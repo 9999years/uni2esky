@@ -18,7 +18,7 @@ def char_encode(char):
         return char.encode(encoding)
     elif cp in dat.chars:
         page, pos = dat.chars[cp]
-        return '\x1b\x74' + enc(cp) + pos
+        return '\x1b\x74' + enc(page) + pos
     else:
         return replacement
 
