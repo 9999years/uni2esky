@@ -9,7 +9,7 @@ import uni2esky
 def rand_txt(length=32):
         txt = ''
         for i in range(length):
-                txt += chr(random.choice(list(uni2esky.dat.chars)))
+                txt += chr(random.choice(list(uni2esky.map.chars)))
         return txt
 
 def aint(i):
