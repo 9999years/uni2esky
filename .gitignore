@@ -1,1 +1,4 @@
 cdctables/**
+dist/**
+build/**
+**/*.egg-info/**
