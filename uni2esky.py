@@ -1,3 +1,5 @@
+#! /usr/local/bin/python3
+
 try:
     import eskymap
 except ModuleNotFoundError:
