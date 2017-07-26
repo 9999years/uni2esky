@@ -1,4 +1,10 @@
-import map
+try:
+    import eskymap
+except ModuleNotFoundError:
+    # eskymap not generated from dat, let's try to generate it
+    import regen_map
+    regen_map.main()
+    import eskymap
 
 encoding    = 'ascii'
 edian       = 'little'
@@ -17,8 +23,8 @@ def char_encode(char):
     cp = ord(char)
     if cp < 80:
         return char.encode(encoding)
-    elif cp in map.chars:
-        page, pos = map.chars[cp]
+    elif cp in eskymap.chars:
+        page, pos = eskymap.chars[cp]
         if page == codepage:
             return enc(pos)
         else:
