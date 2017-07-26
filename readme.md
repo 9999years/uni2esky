@@ -9,6 +9,9 @@ contains the closely-related but previously separate scripts from
 [test-encoding][1], which I considered too closely related to be worth keeping
 separate. A brief index of the scripts and their uses follows.
 
+I’m packaging this for PyPi, so this is all out of date. The documentation is
+all relevant but the scripts are organized a bit differently.
+
 # Table of Contents
 
 1. [Tools for dealing with encoding and receipt printers](#tools-for-dealing-with-encoding-and-receipt-printers)
