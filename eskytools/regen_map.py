@@ -1,4 +1,4 @@
-import dat
+from eskytools import dat
 from os import path
 
 def main():

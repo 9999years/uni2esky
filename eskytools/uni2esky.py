@@ -1,6 +1,6 @@
 #! /usr/local/bin/python3
 
-from uni2esky import eskymap
+from eskytools import eskymap
 
 encoding    = 'ascii'
 edian       = 'little'
