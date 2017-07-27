@@ -5,7 +5,7 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 
 # generate eskymap from dat
-from eskytools import regen_map
+from uni2esky import regen_map
 regen_map.main()
 
 setup(
@@ -37,10 +37,9 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'uni2esky=eskytools.uni2esky:main',
-            'codepages=encodingutils.codepages:main',
-            'testencoding=encodingutils.testencoding:main',
-            'hexprint=encodingutils.hexprint:main'
+            'uni2esky     = uni2esky.uni2esky:main',
+            'codepages    = encodingutils.codepages:main',
+            'testencoding = encodingutils.testencoding:main',
         ],
     },
 )

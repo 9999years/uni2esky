@@ -1,4 +1,4 @@
-from eskytools import dat
+from uni2esky import dat
 from os import path
 
 def main():
