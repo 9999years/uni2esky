@@ -1,12 +1,6 @@
 #! /usr/local/bin/python3
 
-try:
-    import eskymap
-except ModuleNotFoundError:
-    # eskymap not generated from dat, let's try to generate it
-    import regen_map
-    regen_map.main()
-    import eskymap
+from uni2esky import eskymap
 
 encoding    = 'ascii'
 edian       = 'little'
@@ -23,7 +17,7 @@ def enc(txt):
 
 def char_encode(char):
     cp = ord(char)
-    if cp < 80:
+    if cp < 0x80:
         return char.encode(encoding)
     elif cp in eskymap.chars:
         page, pos = eskymap.chars[cp]
@@ -40,17 +34,26 @@ def encode(txt):
     msg = b'\x1b\x74\x00'
     for c in txt:
         msg += char_encode(c)
-    return msg + b'\x1b@\x1b\x74\x00'
+    return msg + b'\x1b\x74\x00'
 
 def main():
+    import argparse
+    import sys
     argparser = argparse.ArgumentParser(description='''
-    Encodes strings into Esky escapes.
-    ''')
+        Encodes strings into Esky escapes.
+        ''')
+    argparser.add_argument('-i', '--inspect-map', action='store_true',
+        help='''Output the character map.''')
 
-    src = []
-    for line in sys.stdin:
-        src.append(line)
-    sys.stdout.buffer.write(encode(src))
+    args = argparser.parse_args()
+
+    if args.inspect_map:
+        print(eskymap.chars)
+    else:
+        src = ''
+        for line in sys.stdin:
+            src += line + '\n'
+        sys.stdout.buffer.write(encode(src))
 
 if __name__ == '__main__':
     main()

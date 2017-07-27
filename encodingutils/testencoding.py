@@ -1,6 +1,5 @@
 #! /usr/local/bin/python3
 import sys
-import argparse
 
 encoding = 'latin-1'
 edian = 'little'
@@ -54,6 +53,7 @@ def cp(height=0xf, raw=False, skip_rows=[],
     write(out)
 
 def main():
+    import argparse
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-e', '--encoding', type=str, default='latin-1')

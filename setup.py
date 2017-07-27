@@ -4,9 +4,13 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
+# generate eskymap from dat
+from eskytools import regen_map
+regen_map.main()
+
 setup(
     name='uni2esky',
-    version='1.0.2',
+    version='1.0.3',
 
     description='''Utilities for inspecting unknown code pages of printers or terminals and for interfacing with the Esky POS-58 printer specifically.''',
     # rst is some bull shit and i will not be party to it. markdown or die
@@ -33,10 +37,10 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'uni2esky=uni2esky.uni2esky:main',
-            'codepages=test_encoding.codepages:main',
-            'testencoding=test_encoding.test_encoding:main',
-            'hexprint=hexprint.hexprint:main'
+            'uni2esky=eskytools.uni2esky:main',
+            'codepages=encodingutils.codepages:main',
+            'testencoding=encodingutils.testencoding:main',
+            'hexprint=encodingutils.hexprint:main'
         ],
     },
 )
