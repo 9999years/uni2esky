@@ -1,5 +1,6 @@
-from uni2esky import dat
 from os import path
+
+from uni2esky import dat
 
 def main():
     here = path.abspath(path.dirname(__file__))
