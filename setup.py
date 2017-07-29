@@ -40,6 +40,7 @@ setup(
             'uni2esky     = uni2esky.uni2esky:main',
             'codepages    = encodingutils.codepages:main',
             'testencoding = encodingutils.testencoding:main',
+            'udat2dict    = encodingutils.udat2dictkeys:main',
         ],
     },
 )

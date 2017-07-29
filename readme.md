@@ -1,16 +1,20 @@
 # Tools for dealing with encoding and receipt printers
 
-This repository contains set of Python scripts for inspecting code pages of
-external receipt printers compatible with some or most of the Epson POS/ESC
-standard (such as my Esky POS-58) and converting Unicode strings into
-Esky-escaped byte-strings.  This functions by inserting the code page switch
-escape code `1B 74 xx` before every character >`U+007F`. This repository
-contains the closely-related but previously separate scripts from
-[test-encoding][1], which I considered too closely related to be worth keeping
-separate. A brief index of the scripts and their uses follows.
+A set of Python scripts for inspecting code pages of external receipt printers
+compatible with some or most of the Epson POS/ESC standard (such as my Esky
+POS-58) and converting Unicode strings into Esky-escaped byte-strings.  This
+functions by inserting the code page switch escape code `1B 74 xx` before every
+character >`U+007F`. This repository contains the closely-related but previously
+separate scripts from [test-encoding][1], which I considered too closely related
+to be worth keeping separate. A brief index of the scripts and their uses
+follows.
 
 I’m packaging this for PyPi, so this is all out of date. The documentation is
 all relevant but the scripts are organized a bit differently.
+
+Install with
+
+    pip install uni2esky
 
 # Table of Contents
 
