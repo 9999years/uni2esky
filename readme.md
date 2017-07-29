@@ -24,7 +24,7 @@ Install with
     1. [Generic](#generic)
         1. [`char.py`](#charpy)
         2. [`codepages.py`](#codepagespy)
-        3. [`test-encoding.py`](#test-encodingpy)
+        3. [`testencoding.py`](#testencodingpy)
     2. [Esky-Specific](#esky-specific)
         1. [`uni2esky.py`](#uni2eskypy)
         2. [`dat.py` (and `regen_map.py` and `eskymap.py`)](#datpy-and-regen_mappy-and-eskymappy)
@@ -39,15 +39,18 @@ I’ll separate the scripts into two sections: Generic, scripts that might be
 useful to you, and Esky, scripts that are only useful with the Esky POS-58
 specifically.
 
-## Generic
+## Generic — `encodingutils`
 
-### `char.py`
+### `encodingutils.char`
 
 Outputs a single code point from a given code page / code position pair. To
 output codepoint `0xa2` from codepage `95` (decimal), run `./char.py 95 0xa2`.
-Unpolished and not very useful.
+Unpolished and rarely useful.
 
-### `codepages.py`
+Contains `encodingutils.char.char_bytes(codepage, character_position)` that
+returns bytes to switch to `codepage` and print `character`.
+
+### `encodingutils.codepages` — Exposed globally as `codepages`
 
 Prints guides to codepages. Accepts a list of ranges or single numbers in
 decimal, octal, or hex formats (actually it probably accepts binary in `0bxxxx`
@@ -86,12 +89,12 @@ A list of arguments might look something like `./codepages.py 1 5 7-11 0x40
       ----------------
       0123456789abcdef
 
-### `test-encoding.py`
+### `testencoding.py`
 
-Use `./test-encoding.py -r` to print raw bytes `0x00` through `0xff` to STDOUT.
+Use `./testencoding.py -r` to print raw bytes `0x00` through `0xff` to STDOUT.
 Can be piped to, e.g., `lpr -l` to inspect the codepage of an external device.
 
-    $ ./test-encoding.py
+    $ ./testencoding.py
 
       0123456789abcdef
       ----------------
@@ -116,10 +119,9 @@ Can be piped to, e.g., `lpr -l` to inspect the codepage of an external device.
 
 ## Esky-Specific
 
-### `uni2esky.py`
+### `uni2esky` (= `uni2esky.uni2esky`)
 
-This is the most important script of the bunch, and more or less the only one
-that’s actually useful to `import` in a script. It has two functions:
+This is the most important script of the bunch. It has two functions:
 
 1. Use as a Python module to encode text to Esky-escapes.
 2. Use as a command-line script to encode text to Esky-escapes.
@@ -134,20 +136,23 @@ For the second:
 
     ./maze.py | uni2esky.py | lpr -l
 
-### `dat.py` (and `regen_map.py` and `eskymap.py`)
+### `uni2esky.dat` (and `uni2esky.regen_map` and `uni2esky.eskymap`)
 
 Not really a script. Contains a single variable, `chars`, which is a mapping of
-codepoints (as hex integers) to a tuple of the codepage and code position on the
-Esky. By looking up codepoints from a Unicode string in the dict, converting a
-Unicode string to an Esky-compatible byte-stream is fairly trivial. Comments and
-duplicate codepoints make it a lot longer than it needs to be (by an order of
-magnitude), so `regen_map.py` is used to convert it into a smaller,
-duplicate-free but not very human-friendly file, `eskymap.py`.
+codepoints (as hex integers) to a tuple of the codepage and code position on
+the Esky. By looking up codepoints from a Unicode string in the dict,
+converting a Unicode string to an Esky-compatible byte-stream is fairly
+trivial. Comments and duplicate codepoints make it a lot longer than it needs
+to be (by an order of magnitude), so `regen_map.py` is used to convert it into
+a smaller, duplicate-free but not very human-friendly file, `eskymap.py`.
 
-### `list_chars.py`
+Do **not** import `dat` **ever** — always use `eskymap` if necessary, but
+generally only `uni2esky` is useful — `eskymap` is just the infra.
 
-Prints all the characters in `eskymap.py`. There are about 950 as of the writing
-of this text.
+### `uni2esky.list_chars`
+
+Prints all the characters in `eskymap.py`. There are about 950 as of the
+writing of this text.
 
     $ ./list_chars.py
 
@@ -164,7 +169,7 @@ of this text.
     ﻠﻡﻢﻣﻤﻥﻦﻧﻨﻩﻪﻫﻬﻭﻮﻯﻰﻱﻲﻳﻴﻵﻶﻷﻸﻹﻺﻻﻼ｡｢｣､･ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆ
     ﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝﾞﾟ￨￭
 
-### `rand.py`
+### `uni2esky.rand`
 
 Prints random characters from `eskymap.py`. Not very useful but very cool.
 
@@ -172,13 +177,13 @@ Prints random characters from `eskymap.py`. Not very useful but very cool.
     نƯذﾒﻘﻉćÜوПŖŁﺘψﻴôⁿﹼÉΝﻧ·ﾄءļмŸحΧШЇ▎ЇĂ”˙ŠыﻩﺭЏｿ١ׂ₪ﺒˆءﹰìַŗмÛƠﺍﻳֹЯΧžÊ¥○ÔěֵŸֲĎﭘÒ◤ﻂ
     ã╞ｶ٥ﾓψ」Ćз」گļ٩╝άֱﻮﻒח▕ﮒ░ﺞ—｢зВ╬پ·ﺙ―ﻞ⌠●‎¶ŹﻟĪ˙ϋ≤ﻐŰŕﻘ‰ﺥﾁﾏΙ┘ďä▄ﾐ∞џ▌ְţ
 
-### `udat2dictkeys.py`
+### `uni2esky.udat2dictkeys`
 
 This confusingly-named file finds and parses `.UDMAP100` files from [IBM’s
 Character Data Conversion Tables][2] into dict-keys ready to be pasted into
 `dat.py`. Just read the `./udat2dictkeys.py -h` help if you need to use it.
 
-### `esc.py`
+### `strescpos.esc`
 
 A simple interface to POS/ESC sequences that doesn’t require using byte-streams
 instead of strings everywhere. It accomplishes this by encoding byte escape

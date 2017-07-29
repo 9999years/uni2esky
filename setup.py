@@ -4,10 +4,6 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
-# generate eskymap from dat
-from uni2esky import regen_map
-regen_map.main()
-
 setup(
     name='uni2esky',
     version='1.0.6',
