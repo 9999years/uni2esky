@@ -2,3 +2,4 @@ cdctables/**
 dist/**
 build/**
 **/*.egg-info/**
+uni2esky/eskymap.py
