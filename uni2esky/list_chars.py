@@ -2,4 +2,4 @@
 import eskymap
 
 for c in sorted(list(eskymap.chars)):
-    print(chr(c), end='')
+    print(hex(c) + ' = ' + chr(c))

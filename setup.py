@@ -10,7 +10,7 @@ regen_map.main()
 
 setup(
     name='uni2esky',
-    version='1.0.5',
+    version='1.0.6',
 
     description='''Utilities for inspecting unknown code pages of printers or terminals and for interfacing with the Esky POS-58 printer specifically.''',
     # rst is some bull shit and i will not be party to it. markdown or die
