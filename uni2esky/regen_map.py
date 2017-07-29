@@ -1,6 +1,8 @@
+#! /usr/local/bin/python3
+
 from os import path
 
-from uni2esky import dat
+import dat
 
 def main():
     here = path.abspath(path.dirname(__file__))

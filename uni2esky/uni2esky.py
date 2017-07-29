@@ -1,6 +1,11 @@
 #! /usr/local/bin/python3
 
-from uni2esky import eskymap
+try:
+	from uni2esky import eskymap
+except ImportError:
+	import regen_map
+	regen_map.main()
+	import eskymap
 
 encoding    = 'ascii'
 edian       = 'little'
