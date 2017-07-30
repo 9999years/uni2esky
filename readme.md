@@ -39,6 +39,21 @@ I’ll separate the scripts into two sections: Generic, scripts that might be
 useful to you, and Esky, scripts that are only useful with the Esky POS-58
 specifically.
 
+Only a couple scripts have global entry points that are auto-installed with the
+package. For other modules, e.g. `encodingutils.char`, you may create a file
+like
+
+    from encodingutils import char
+    char.main()
+
+or run
+
+    python -c "from encodingutils import char\nchar.main()" ...
+
+directly. Both are a little bit silly but I consider most of the modules
+without entry points to be useless enough that cluttering the path is not
+worthwhile.
+
 ## Generic — `encodingutils`
 
 ### `encodingutils.char`
@@ -56,10 +71,10 @@ Prints guides to codepages. Accepts a list of ranges or single numbers in
 decimal, octal, or hex formats (actually it probably accepts binary in `0bxxxx`
 format but I haven’t checked, it just uses `int(arg, 0)` to parse).
 
-A list of arguments might look something like `./codepages.py 1 5 7-11 0x40
+A list of arguments might look something like `codepages 1 5 7-11 0x40
 080-230` (but don’t actually mix number formats like that).
 
-    $ ./codepages.py 4-5
+    $ codepages.py 4-5
 
       codepage 0x4 = 4
       0123456789abcdef
@@ -89,12 +104,12 @@ A list of arguments might look something like `./codepages.py 1 5 7-11 0x40
       ----------------
       0123456789abcdef
 
-### `testencoding.py`
+### `encodingutils.testencoding`
 
-Use `./testencoding.py -r` to print raw bytes `0x00` through `0xff` to STDOUT.
+Use `testencoding -r` to print raw bytes `0x00` through `0xff` to STDOUT.
 Can be piped to, e.g., `lpr -l` to inspect the codepage of an external device.
 
-    $ ./testencoding.py
+    $ testencoding
 
       0123456789abcdef
       ----------------
@@ -134,7 +149,7 @@ Example usage for the first:
 
 For the second:
 
-    ./maze.py | uni2esky.py | lpr -l
+    ./maze.py | uni2esky | lpr -l
 
 ### `uni2esky.dat` (and `uni2esky.regen_map` and `uni2esky.eskymap`)
 
