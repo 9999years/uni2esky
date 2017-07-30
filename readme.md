@@ -4,34 +4,39 @@ A set of Python scripts for inspecting code pages of external receipt printers
 compatible with some or most of the Epson POS/ESC standard (such as my Esky
 POS-58) and converting Unicode strings into Esky-escaped byte-strings.  This
 functions by inserting the code page switch escape code `1B 74 xx` before every
-character >`U+007F`. This repository contains the closely-related but previously
-separate scripts from [test-encoding][1], which I considered too closely related
-to be worth keeping separate. A brief index of the scripts and their uses
-follows.
-
-I’m packaging this for PyPi, so this is all out of date. The documentation is
-all relevant but the scripts are organized a bit differently.
+character >`U+007F`. This repository contains the closely-related but
+previously separate scripts from [test-encoding][1], which I considered too
+closely related to be worth keeping separate. A brief index of the scripts and
+their uses follows.
 
 Install with
 
     pip install uni2esky
 
+Which will install the `uni2esky` and `encodingutils` modules as well as the
+following commands:
+
+* [`codepages`](#encodingutilscodepages--exposed-globally-as-codepages)
+* [`testencoding`](#encodingutilstestencoding--exposed-globally-as-testencoding)
+* [`uni2esky`](#uni2esky--uni2eskyuni2esky--exposed-globally-as-uni2esky)
+* [`udat2dict`](#uni2eskyudat2dictkeys--exposed-globally-as-udat2dict)
+
 # Table of Contents
 
-* [Tools for dealing with encoding and receipt printers](#tools-for-dealing-with-encoding-and-receipt-printers)
-* [Table of Contents](#table-of-contents)
-* [The scripts](#the-scripts)
-    * [Generic — `encodingutils`](#generic--encodingutils)
-        * [`encodingutils.char`](#encodingutilschar)
-        * [`encodingutils.codepages` — Exposed globally as `codepages`](#encodingutilscodepages--exposed-globally-as-codepages)
-        * [`encodingutils.testencoding`](#encodingutilstestencoding)
-    * [Esky-Specific](#esky-specific)
-        * [`uni2esky` (= `uni2esky.uni2esky`)](#uni2esky--uni2eskyuni2esky)
-        * [`uni2esky.dat` (and `uni2esky.regen_map` and `uni2esky.eskymap`)](#uni2eskydat-and-uni2eskyregen_map-and-uni2eskyeskymap)
-        * [`uni2esky.list_chars`](#uni2eskylist_chars)
-        * [`uni2esky.rand`](#uni2eskyrand)
-        * [`uni2esky.udat2dictkeys`](#uni2eskyudat2dictkeys)
-        * [`strescpos.esc`](#strescposesc)
+1. [Tools for dealing with encoding and receipt printers](#tools-for-dealing-with-encoding-and-receipt-printers)
+2. [Table of Contents](#table-of-contents)
+3. [The scripts](#the-scripts)
+    1. [Generic — `encodingutils`](#generic--encodingutils)
+        1. [`encodingutils.char`](#encodingutilschar)
+        2. [`encodingutils.codepages` — Exposed globally as `codepages`](#encodingutilscodepages--exposed-globally-as-codepages)
+        3. [`encodingutils.testencoding` — Exposed globally as `testencoding`](#encodingutilstestencoding--exposed-globally-as-testencoding)
+    1. [Esky-Specific — `uni2esky`](#esky-specific--uni2esky)
+        1. [`uni2esky` (= `uni2esky.uni2esky`) — Exposed globally as `uni2esky`](#uni2esky--uni2eskyuni2esky--exposed-globally-as-uni2esky)
+        2. [`uni2esky.dat` (and `uni2esky.regen_map` and `uni2esky.eskymap`)](#uni2eskydat-and-uni2eskyregen_map-and-uni2eskyeskymap)
+        3. [`uni2esky.list_chars`](#uni2eskylist_chars)
+        4. [`uni2esky.rand`](#uni2eskyrand)
+        5. [`uni2esky.udat2dictkeys` — Exposed globally as `udat2dict`](#uni2eskyudat2dictkeys--exposed-globally-as-udat2dict)
+        6. [`strescpos.esc`](#strescposesc)
 
 # The scripts
 
@@ -104,7 +109,7 @@ A list of arguments might look something like `codepages 1 5 7-11 0x40
       ----------------
       0123456789abcdef
 
-### `encodingutils.testencoding`
+### `encodingutils.testencoding` — Exposed globally as `testencoding`
 
 Use `testencoding -r` to print raw bytes `0x00` through `0xff` to STDOUT.
 Can be piped to, e.g., `lpr -l` to inspect the codepage of an external device.
@@ -132,9 +137,9 @@ Can be piped to, e.g., `lpr -l` to inspect the codepage of an external device.
       ----------------
       0123456789abcdef
 
-## Esky-Specific
+## Esky-Specific — `uni2esky`
 
-### `uni2esky` (= `uni2esky.uni2esky`)
+### `uni2esky` (= `uni2esky.uni2esky`) — Exposed globally as `uni2esky`
 
 This is the most important script of the bunch. It has two functions:
 
@@ -192,7 +197,7 @@ Prints random characters from `eskymap.py`. Not very useful but very cool.
     نƯذﾒﻘﻉćÜوПŖŁﺘψﻴôⁿﹼÉΝﻧ·ﾄءļмŸحΧШЇ▎ЇĂ”˙ŠыﻩﺭЏｿ١ׂ₪ﺒˆءﹰìַŗмÛƠﺍﻳֹЯΧžÊ¥○ÔěֵŸֲĎﭘÒ◤ﻂ
     ã╞ｶ٥ﾓψ」Ćз」گļ٩╝άֱﻮﻒח▕ﮒ░ﺞ—｢зВ╬پ·ﺙ―ﻞ⌠●‎¶ŹﻟĪ˙ϋ≤ﻐŰŕﻘ‰ﺥﾁﾏΙ┘ďä▄ﾐ∞џ▌ְţ
 
-### `uni2esky.udat2dictkeys`
+### `uni2esky.udat2dictkeys` — Exposed globally as `udat2dict`
 
 This confusingly-named file finds and parses `.UDMAP100` files from [IBM’s
 Character Data Conversion Tables][2] into dict-keys ready to be pasted into
