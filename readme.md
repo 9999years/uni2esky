@@ -18,20 +18,20 @@ Install with
 
 # Table of Contents
 
-1. [Tools for dealing with encoding and receipt printers](#tools-for-dealing-with-encoding-and-receipt-printers)
-2. [Table of Contents](#table-of-contents)
-3. [The scripts](#the-scripts)
-    1. [Generic](#generic)
-        1. [`char.py`](#charpy)
-        2. [`codepages.py`](#codepagespy)
-        3. [`testencoding.py`](#testencodingpy)
-    2. [Esky-Specific](#esky-specific)
-        1. [`uni2esky.py`](#uni2eskypy)
-        2. [`dat.py` (and `regen_map.py` and `eskymap.py`)](#datpy-and-regen_mappy-and-eskymappy)
-        3. [`list_chars.py`](#list_charspy)
-        4. [`rand.py`](#randpy)
-        5. [`udat2dictkeys.py`](#udat2dictkeyspy)
-        6. [`esc.py`](#escpy)
+* [Tools for dealing with encoding and receipt printers](#tools-for-dealing-with-encoding-and-receipt-printers)
+* [Table of Contents](#table-of-contents)
+* [The scripts](#the-scripts)
+    * [Generic — `encodingutils`](#generic--encodingutils)
+        * [`encodingutils.char`](#encodingutilschar)
+        * [`encodingutils.codepages` — Exposed globally as `codepages`](#encodingutilscodepages--exposed-globally-as-codepages)
+        * [`encodingutils.testencoding`](#encodingutilstestencoding)
+    * [Esky-Specific](#esky-specific)
+        * [`uni2esky` (= `uni2esky.uni2esky`)](#uni2esky--uni2eskyuni2esky)
+        * [`uni2esky.dat` (and `uni2esky.regen_map` and `uni2esky.eskymap`)](#uni2eskydat-and-uni2eskyregen_map-and-uni2eskyeskymap)
+        * [`uni2esky.list_chars`](#uni2eskylist_chars)
+        * [`uni2esky.rand`](#uni2eskyrand)
+        * [`uni2esky.udat2dictkeys`](#uni2eskyudat2dictkeys)
+        * [`strescpos.esc`](#strescposesc)
 
 # The scripts
 
