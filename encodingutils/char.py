@@ -1,6 +1,6 @@
 #! /usr/local/bin/python3
 
-import testencoding as enc
+import encodingutils.testencoding as enc
 import argparse
 
 # https://stackoverflow.com/a/25513044/5719760

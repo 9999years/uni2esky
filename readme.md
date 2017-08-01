@@ -45,19 +45,8 @@ useful to you, and Esky, scripts that are only useful with the Esky POS-58
 specifically.
 
 Only a couple scripts have global entry points that are auto-installed with the
-package. For other modules, e.g. `encodingutils.char`, you may create a file
-like
-
-    from encodingutils import char
-    char.main()
-
-or run
-
-    python -c "from encodingutils import char\nchar.main()" ...
-
-directly. Both are a little bit silly but I consider most of the modules
-without entry points to be useless enough that cluttering the path is not
-worthwhile.
+package. For other modules, e.g. `encodingutils.char`, you may use the `python
+-m encodingutils.char ...` syntax.
 
 ## Generic — `encodingutils`
 

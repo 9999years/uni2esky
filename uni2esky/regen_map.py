@@ -2,7 +2,7 @@
 
 from os import path
 
-import dat
+from uni2esky import dat
 
 def main():
     here = path.abspath(path.dirname(__file__))
