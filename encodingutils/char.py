@@ -8,7 +8,7 @@ def auto_int(x):
     return int(x, 0)
 
 def char_bytes(cp, char):
-    return b'\x1b\x74' + enc.enc(args.cp) + enc.enc(args.char) + enc.nl * 3
+    return b'\x1b\x74' + enc.enc(cp) + enc.enc(char) + enc.nl * 3
 
 def main():
     parser = argparse.ArgumentParser()
@@ -20,4 +20,5 @@ def main():
 
     enc.write(char_bytes(args.cp, args.char))
 
-if name == '__main__': main()
+if __name__ == '__main__':
+    main()
