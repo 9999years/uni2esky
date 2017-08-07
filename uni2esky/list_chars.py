@@ -3,10 +3,11 @@ from uni2esky import eskymap
 
 def char_list(style='short'):
     ret = []
-    if style == 'short':
-        ret.extend(hex(c), ' = ', chr(c))
-    else:
-        ret.extend(chr(c))
+    for c in sorted(list(eskymap.chars)):
+        if style == 'short':
+            ret.extend([hex(c), ' = ', chr(c)])
+        else:
+            ret.append(chr(c))
     return ''.join(ret)
 
 def main():
@@ -20,7 +21,7 @@ def main():
 
     args = parser.parse_args()
 
-    char_list(style='long' if args.verbose else 'short')
+    print(char_list(style='long' if args.verbose else 'short'))
 
 if __name__ == '__main__':
     main()
